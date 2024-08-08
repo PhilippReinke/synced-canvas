@@ -14,6 +14,11 @@ some to dos
 - on iPhone the selected button hasn't got round corners initially
 - with high latency drawing is lagging behind. already draw line and do not wait
   for downstream message with drawing
+- client-side websocket handling is absolutely rudimentary:
+  - display number of active users
+  - restart ws reconnection on lost
+  - let user know when connection is lost and disable drawing
+- pen thickness should be added
 
 ## Usage
 
