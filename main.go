@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"log/slog"
 	"net/http"
 	"os"
@@ -13,11 +14,12 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-const (
-	addr = ":8080"
-)
-
 func main() {
+	// parse command line flags
+	port := flag.String("port", "8080", "Port to listen on")
+	flag.Parse()
+	addr := "localhost:" + *port
+
 	// setup server, canvas and websocket manager
 	canvas := data.NewCanvas()
 	manager := wsm.NewManager(canvas.ProcessNewMessage)
