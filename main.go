@@ -17,6 +17,7 @@ import (
 func main() {
 	// parse command line flags
 	port := flag.String("port", "8080", "Port to listen on")
+	webDir := flag.String("dir", "./web", "Web directory to serve static files from")
 	flag.Parse()
 	addr := "localhost:" + *port
 
@@ -26,7 +27,7 @@ func main() {
 	server := &http.Server{
 		Addr: addr,
 	}
-	http.Handle("/", http.FileServer(http.Dir("./web")))
+	http.Handle("/", http.FileServer(http.Dir(*webDir)))
 	http.Handle("/ws", websocket.Handler(manager.HandleWS))
 	http.HandleFunc("/canvas/lines", canvas.GetLinesHandler)
 	http.HandleFunc("/canvas/reset", canvas.ResetHandler)
